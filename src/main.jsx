@@ -4,11 +4,12 @@ import './style.css'
 import { Root } from './Root.jsx'
 import {Login, Register} from './auth/pages'
 import {createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom';
+import {AppTheme} from "./theme/AppTheme.jsx";
+
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Root />,
-
     },
     {
         path: 'auth/*',
@@ -32,6 +33,8 @@ export const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router = {router} />
+      <AppTheme>
+          <RouterProvider router={ router } />
+      </AppTheme>
   </React.StrictMode>,
 )
