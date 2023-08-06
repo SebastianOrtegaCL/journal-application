@@ -2,31 +2,31 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './style.css'
 import { Root } from './Root.jsx'
-import { Login, Register } from './auth/pages'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { AuthLayout } from './auth/layout/AuthLayout'
+import {Login, Register} from './auth/pages'
+import {createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom';
 export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Root />,
-    children: [
-        {
-            element: <AuthLayout />,
-            children: [
-                {
-                    path: 'login',
-                    element: <Login />
-                },
-                {
-                    path: 'register',
-                    element: <Register />
-                }
-            ]
-        }
-    ]
+    {
+        path: "/",
+        element: <Root />,
 
-  },
-
+    },
+    {
+        path: 'auth/*',
+        children: [
+            {
+                path: 'login',
+                element: <Login />
+            },
+            {
+                path: 'register',
+                element: <Register />
+            },
+            {
+                path: '*',
+                element: <Navigate to="/auth/login"/>
+            }
+        ]
+    }
 ])
 
 
