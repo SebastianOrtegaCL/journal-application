@@ -7,9 +7,7 @@ export const Login = () => {
       <>
         <AuthLayout title="Login">
             <form>
-                <Grid
-                    container
-                >
+                <Grid container >
                     <Grid item xs={ 12 } sx={{ mt: 2 }}>
                         <TextField
                             label="Correo"

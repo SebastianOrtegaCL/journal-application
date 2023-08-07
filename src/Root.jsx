@@ -1,29 +1,31 @@
-import {AppBar, Box, IconButton, Toolbar, Typography} from "@mui/material";
-import { MailOutline } from '@mui/icons-material';
+import {JournalLayout} from "./journal/layout/JournalLayout.jsx";
+import {NothingSelectedView} from "./journal/views/NothingSelectedView.jsx";
+import { NoteView } from "../src/journal/views";
+import {IconButton} from "@mui/material";
+import {AddOutlined} from "@mui/icons-material";
 export const Root = () => {
     return(
         <>
-            {/*<Box sx={{ flexGrow: 1}}>*/}
-            {/*    <AppBar position='static'>*/}
-            {/*        <Toolbar>*/}
-            {/*            <IconButton*/}
-            {/*                size='large'*/}
-            {/*                edge='start'*/}
-            {/*                color='inherit'*/}
-            {/*                aria-label='menu'*/}
-            {/*                sx={{ mr: 2 }}*/}
-            {/*            >*/}
-            {/*                <MailOutline />*/}
-            {/*            </IconButton>*/}
-            {/*            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>*/}
-            {/*                News*/}
-            {/*            </Typography>*/}
-            {/*        </Toolbar>*/}
-            {/*    </AppBar>*/}
-            {/*</Box>*/}
-            <Typography>
-                Journal
-            </Typography>
+            <JournalLayout >
+                {/*<NothingSelectedView />*/}
+                <NoteView />
+
+                <IconButton
+                    size='large'
+                    sx={{
+                        color: 'white',
+                        backgroundColor: 'error.main',
+                        ':hover': { backgroundColor: 'error.main', opacity: 0.9 },
+                        position: 'fixed',
+                        right: 50,
+                        bottom: 50,
+
+                    }}
+                >
+                    <AddOutlined sx={{ fontSize: 30}}/>
+
+                </IconButton>
+            </JournalLayout>
         </>
     )
 }
