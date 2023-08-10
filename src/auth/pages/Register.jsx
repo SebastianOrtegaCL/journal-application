@@ -1,5 +1,4 @@
 import { Button, Grid, TextField, Typography, Link } from "@mui/material";
-import { Google } from '@mui/icons-material';
 import { Link as RouterLink } from 'react-router-dom';
 import {AuthLayout} from "../layout/AuthLayout.jsx";
 
@@ -19,7 +18,7 @@ export const Register = () => {
                     </Grid>
                     <Grid item xs={ 12 } sx={{ mt: 2 }}>
                         <TextField
-                            label="correo"
+                            label="Email"
                             placeholder="example@gmail.com"
                             type="email"
                             fullWidth

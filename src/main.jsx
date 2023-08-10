@@ -5,6 +5,8 @@ import { Root } from './Root.jsx'
 import {Login, Register} from './auth/pages'
 import {createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom';
 import {AppTheme} from "./theme/AppTheme.jsx";
+import {Provider} from "react-redux";
+import {store} from "./store";
 
 export const router = createBrowserRouter([
     {
@@ -30,11 +32,12 @@ export const router = createBrowserRouter([
     }
 ])
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-      <AppTheme>
-          <RouterProvider router={ router } />
-      </AppTheme>
+      <Provider store={ store }>
+          <AppTheme>
+              <RouterProvider router={ router } />
+          </AppTheme>
+      </Provider>
   </React.StrictMode>,
 )

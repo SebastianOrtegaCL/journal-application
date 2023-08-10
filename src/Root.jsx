@@ -1,5 +1,4 @@
 import {JournalLayout} from "./journal/layout/JournalLayout.jsx";
-import {NothingSelectedView} from "./journal/views/NothingSelectedView.jsx";
 import { NoteView } from "../src/journal/views";
 import {IconButton} from "@mui/material";
 import {AddOutlined} from "@mui/icons-material";
