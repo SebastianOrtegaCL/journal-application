@@ -1,11 +1,24 @@
 import { Button, Grid, TextField, Typography, Link } from "@mui/material";
 import { Link as RouterLink } from 'react-router-dom';
 import {AuthLayout} from "../layout/AuthLayout.jsx";
+import {useForm} from "../../hooks/index.js";
+
+const formData = {
+    email: 'sebastian@gmail.com',
+    password: '123456',
+    displayName: 'Sebastian Ortega',
+}
 
 export const Register = () => {
+
+    const { displayName, email, password, onInputChange, formState } = useForm(formData);
+    const onSubmit = (event) => {
+        event.preventDefault();
+        console.log(formState);
+    }
     return (
         <AuthLayout title="register">
-            <form>
+            <form onSubmit={ onSubmit }>
                 <Grid container>
                     <Grid item xs={ 12 } sx={{ mt: 2 }}>
                         <TextField
@@ -13,6 +26,9 @@ export const Register = () => {
                             placeholder="Your name"
                             type="text"
                             fullWidth
+                            value={ displayName }
+                            name='displayName'
+                            onChange={ onInputChange }
                         >
                         </TextField>
                     </Grid>
@@ -22,6 +38,9 @@ export const Register = () => {
                             placeholder="example@gmail.com"
                             type="email"
                             fullWidth
+                            value={ email }
+                            name='email'
+                            onChange={ onInputChange }
                         >
                         </TextField>
                     </Grid>
@@ -30,12 +49,20 @@ export const Register = () => {
                             label="Password"
                             placeholder="********"
                             type="password"
-                            fullWidth>
+                            fullWidth
+                            value={ password }
+                            name='password'
+                            onChange={ onInputChange }
+                        >
                         </TextField>
                     </Grid>
                     <Grid container spacing={ 2 } sx={{ mb: 2, mt: 1}}>
                         <Grid item xs={ 12 } >
-                            <Button variant='contained' fullWidth>
+                            <Button
+                                type='submit'
+                                variant='contained'
+                                fullWidth
+                            >
                                 <Typography>
                                     Sign up
                                 </Typography>
