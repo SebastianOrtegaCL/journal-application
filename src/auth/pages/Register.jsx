@@ -6,18 +6,27 @@ import {useForm} from "../../hooks/index.js";
 const formData = {
     email: 'sebastian@gmail.com',
     password: '123456',
-    displayName: 'Sebastian Ortega',
+    displayName: 'sebastian ortega',
+}
+
+const formValidations = {
+    email: [ (value) => value.includes('@'), 'El correo debe de tener un @'],
+    password: [ (value) => value.length >= 6, 'El correo debe tener una longitud superior a 6 caracteres'],
+    displayName: [ (value) => value.length >= 1, 'El nombre es obligatorio']
 }
 
 export const Register = () => {
 
-    const { displayName, email, password, onInputChange, formState } = useForm(formData);
+    const { displayName, email, password, onInputChange, formState,
+            displayNameValid, emailValid, passwordValid, isFormValid } = useForm(formData, formValidations);
+    console.log(displayNameValid)
     const onSubmit = (event) => {
         event.preventDefault();
         console.log(formState);
     }
     return (
         <AuthLayout title="register">
+            <h1>FormValid { isFormValid ? 'Valido' : 'Incorrecto'}</h1>
             <form onSubmit={ onSubmit }>
                 <Grid container>
                     <Grid item xs={ 12 } sx={{ mt: 2 }}>
@@ -29,6 +38,8 @@ export const Register = () => {
                             value={ displayName }
                             name='displayName'
                             onChange={ onInputChange }
+                            error={ !displayNameValid }
+                            helperText={ 'el nombre '}
                         >
                         </TextField>
                     </Grid>
