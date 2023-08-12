@@ -1,7 +1,8 @@
 import {checkingCredentials, login, logout} from "./authSlice.js";
-import {signInWithGoogle} from "../../firebase/providers.js";
+import {signInWithGoogle} from "../../firebase/provider.js";
+// import {signInWithGoogle} from '../../firebase/provider.js';
 
-export const checkingAuthentication = ( email, password) => {
+export const checkingAuthentication = (email, password) => {
     return async(dispatch) => {
         dispatch(checkingCredentials());
     }
