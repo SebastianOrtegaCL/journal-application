@@ -1,12 +1,15 @@
-import { Button, Grid, TextField, Typography, Link } from "@mui/material";
+import {Button, Grid, TextField, Typography, Link, Alert} from "@mui/material";
 import { Link as RouterLink } from 'react-router-dom';
 import {AuthLayout} from "../layout/AuthLayout.jsx";
 import {useForm} from "../../hooks/index.js";
+import {useMemo, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {startCreatingUserWithEmailPassword} from "../../store/auth/index.js";
 
 const formData = {
-    email: 'sebastian@gmail.com',
-    password: '123456',
-    displayName: 'sebastian ortega',
+    email: '',
+    password: '',
+    displayName: '',
 }
 
 const formValidations = {
@@ -17,12 +20,18 @@ const formValidations = {
 
 export const Register = () => {
 
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const { status, errorMessage } = useSelector( state => state.auth );
+    const isCheckingAuthentication = useMemo( () => status === 'checking', [status]);
+    const dispatch = useDispatch();
     const { displayName, email, password, onInputChange, formState,
             displayNameValid, emailValid, passwordValid, isFormValid } = useForm(formData, formValidations);
     console.log(displayNameValid)
     const onSubmit = (event) => {
         event.preventDefault();
-        console.log(formState);
+        setFormSubmitted(true);
+        if( !isFormValid ) return;
+        dispatch( startCreatingUserWithEmailPassword(formState));
     }
     return (
         <AuthLayout title="register">
@@ -37,7 +46,7 @@ export const Register = () => {
                             value={ displayName }
                             name='displayName'
                             onChange={ onInputChange }
-                            error={ !!displayNameValid }
+                            error={ !!displayNameValid && formSubmitted}
                             helperText={ displayNameValid}
                         >
                         </TextField>
@@ -51,7 +60,7 @@ export const Register = () => {
                             value={ email }
                             name='email'
                             onChange={ onInputChange }
-                            error={ !!emailValid }
+                            error={ !!emailValid && formSubmitted}
                             helperText={ emailValid }
                         >
                         </TextField>
@@ -65,14 +74,21 @@ export const Register = () => {
                             value={ password }
                             name='password'
                             onChange={ onInputChange }
-                            error={ passwordValid }
+                            error={ passwordValid && formSubmitted }
                             helperText={ passwordValid }
                         >
                         </TextField>
                     </Grid>
                     <Grid container spacing={ 2 } sx={{ mb: 2, mt: 1}}>
+                        <Grid item
+                              xs={ 12 }
+                              display={ !!errorMessage ? '' : 'none'}
+                        >
+                            <Alert severity='error'>{ errorMessage }</Alert>
+                        </Grid>
                         <Grid item xs={ 12 } >
                             <Button
+                                disabled={ isCheckingAuthentication }
                                 type='submit'
                                 variant='contained'
                                 fullWidth
