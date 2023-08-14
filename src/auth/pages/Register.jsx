@@ -10,7 +10,7 @@ const formData = {
 }
 
 const formValidations = {
-    email: [ (value) => value.includes('@'), 'El correo debe de tener un @'],
+    email: [ (value) => value.includes('@'), 'El correo debe tener un @'],
     password: [ (value) => value.length >= 6, 'El correo debe tener una longitud superior a 6 caracteres'],
     displayName: [ (value) => value.length >= 1, 'El nombre es obligatorio']
 }
@@ -26,7 +26,6 @@ export const Register = () => {
     }
     return (
         <AuthLayout title="register">
-            <h1>FormValid { isFormValid ? 'Valido' : 'Incorrecto'}</h1>
             <form onSubmit={ onSubmit }>
                 <Grid container>
                     <Grid item xs={ 12 } sx={{ mt: 2 }}>
@@ -38,8 +37,8 @@ export const Register = () => {
                             value={ displayName }
                             name='displayName'
                             onChange={ onInputChange }
-                            error={ !displayNameValid }
-                            helperText={ 'el nombre '}
+                            error={ !!displayNameValid }
+                            helperText={ displayNameValid}
                         >
                         </TextField>
                     </Grid>
@@ -52,6 +51,8 @@ export const Register = () => {
                             value={ email }
                             name='email'
                             onChange={ onInputChange }
+                            error={ !!emailValid }
+                            helperText={ emailValid }
                         >
                         </TextField>
                     </Grid>
@@ -64,6 +65,8 @@ export const Register = () => {
                             value={ password }
                             name='password'
                             onChange={ onInputChange }
+                            error={ passwordValid }
+                            helperText={ passwordValid }
                         >
                         </TextField>
                     </Grid>
