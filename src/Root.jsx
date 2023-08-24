@@ -8,7 +8,6 @@ export const Root = () => {
             <JournalLayout >
                 {/*<NothingSelectedView />*/}
                 <NoteView />
-
                 <IconButton
                     size='large'
                     sx={{
@@ -22,7 +21,6 @@ export const Root = () => {
                     }}
                 >
                     <AddOutlined sx={{ fontSize: 30}}/>
-
                 </IconButton>
             </JournalLayout>
         </>

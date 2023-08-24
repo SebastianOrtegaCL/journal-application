@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom/client'
 import './style.css'
 import { Root } from './Root.jsx'
 import {Login, Register} from './auth/pages'
-import {createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom';
+import {createBrowserRouter, Navigate, RouterProvider, useLoaderData} from 'react-router-dom';
 import {AppTheme} from "./theme/AppTheme.jsx";
-import {Provider} from "react-redux";
+import {Provider, } from "react-redux";
 import {store} from "./store";
+import {CheckingAuth} from "./ui/component/CheckingAuth.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -18,7 +19,8 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: 'login',
-                element: <Login />
+                element: <Login />,
+
             },
             {
                 path: 'register',
@@ -30,7 +32,7 @@ export const router = createBrowserRouter([
             }
         ]
     }
-])
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
