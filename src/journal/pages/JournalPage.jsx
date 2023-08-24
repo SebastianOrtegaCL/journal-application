@@ -1,10 +1,12 @@
-import {JournalLayout} from "./journal/layout/JournalLayout.jsx";
-import { NoteView } from "../src/journal/views";
+import {JournalLayout} from "../layout/JournalLayout.jsx";
+import {NoteView} from "../views/index.js";
 import {IconButton} from "@mui/material";
 import {AddOutlined} from "@mui/icons-material";
-export const Root = () => {
-    return(
+
+export const JournalPage = () => {
+    return (
         <>
+
             <JournalLayout >
                 {/*<NothingSelectedView />*/}
                 <NoteView />
