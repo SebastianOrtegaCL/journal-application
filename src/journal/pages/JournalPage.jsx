@@ -7,7 +7,7 @@ export const JournalPage = () => {
     return (
         <>
 
-            <JournalLayout >
+            <JournalLayout className='animate__animated animate__fadeIn animate__faster'>
                 {/*<NothingSelectedView />*/}
                 <NoteView />
                 <IconButton
