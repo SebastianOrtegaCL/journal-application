@@ -45,7 +45,7 @@ export const NoteView = () => {
     }
 
     const onDeleteNote = () => {
-        dispatch(startDeletingNote);
+        dispatch(startDeletingNote() );
     };
 
     return (
@@ -80,17 +80,18 @@ export const NoteView = () => {
                     <SaveOutlined sx={{ fontSize: 30, mr: 1}} />
                         Save
                 </Button>
-
-                <Button disabled={isSaving} onClick={ onDeleteNote } color='primary' sx={{ padding: 2 }}>
-                    <DeleteOutlineOutlined sx={{ fontSize: 30, mr: 1}} />
-                    Delete
-                </Button>
-
             </Grid>
 
             <Grid container>
                 <TextField name='title' value={title} onChange={onInputChange} type='text' variant='filled' fullWidth placeholder='Title' label='Title' sx={{ border: 'none', mb: 1}}/>
                 <TextField name='content' value={content} onChange={onInputChange} type='text' variant='filled' fullWidth multiline placeholder="What's happening" label='' minRows={ 5 } />
+            </Grid>
+
+            <Grid container justifyContent='end'>
+                <Button disabled={isSaving} onClick={ onDeleteNote } color='primary' sx={{ mt: 2 }}>
+                    <DeleteOutlineOutlined  />
+                    Delete
+                </Button>
             </Grid>
 
         {/*    Img gallery */}
